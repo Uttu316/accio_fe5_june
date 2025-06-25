@@ -1,0 +1,36 @@
+.counter {
+  border: 1px solde brown;
+  background-color: peachpuff;
+  padding: 40px;
+  margin: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 200px;
+  margin: 40px auto;
+}
+
+.counter h2 {
+  color: salmon;
+}
+
+.counter_actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+.counter_actions button {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  background-color: crimson;
+  color: white;
+  cursor: pointer;
+}
+
+.counter_actions button:first-child {
+  background-color: teal;
+}
