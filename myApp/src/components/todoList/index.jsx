@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./todo.css";
 import TodoItem from "./todoItem";
 const TodoList = () => {
   const [tasks, setTasks] = useState([]); // list of task
@@ -76,6 +77,7 @@ const TodoList = () => {
       <ul className="taskList">
         {tasks.map((item, index) => (
           <TodoItem
+            key={item.id} // a unique value to every item of array(list)
             onDelete={() => onDelete(item.id)}
             onEdit={() => onEdit(item, index)}
             task={item.task}

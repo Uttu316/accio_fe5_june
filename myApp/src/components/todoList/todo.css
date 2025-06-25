@@ -1,0 +1,90 @@
+.todoList {
+  margin: 20px auto;
+  border: 1px solid salmon;
+  border-radius: 2px;
+  padding: 20px;
+  width: 240px;
+}
+
+.todoInput input {
+  padding: 4px 8px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  border-right: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.todoInput {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todoInput button {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid gray;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  cursor: pointer;
+}
+.todoInput input:focus {
+  outline: 1px solid salmon;
+}
+.todoInput input:focus + button {
+  outline: 1px solid salmon;
+}
+
+.taskItemText {
+  word-break: break-word;
+}
+.taskList {
+  margin-top: 10px;
+}
+.taskItem {
+  border-bottom: 1px solid teal;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px;
+  margin-bottom: 20px;
+}
+
+.taskActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-left: 10px;
+  align-self: flex-start;
+}
+.taskbtn {
+  background-color: transparent;
+  border: 1px solid gray;
+  border-radius: 50%;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.taskbtn:disabled {
+  border: 1px solid gray;
+  color: gray;
+}
+
+.editBtn {
+  border: 1px solid orange;
+  color: orange;
+}
+
+.editBtn:hover {
+  background-color: rgba(255, 213, 136, 0.2);
+}
+.dltBtn {
+  border: 1px solid rgb(244, 144, 144);
+  color: rgb(244, 144, 144);
+}
+.dltBtn:hover {
+  background-color: rgba(255, 195, 195, 0.2);
+}

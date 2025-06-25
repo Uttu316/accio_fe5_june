@@ -4,10 +4,18 @@ const TodoItem = ({ onDelete, disabled, task, onEdit }) => {
     <li className="taskItem">
       <span className="taskItemText">{task}</span>
       <div className="taskActions">
-        <button disabled={disabled} className="editBtn" onClick={onEdit}>
+        <button
+          disabled={disabled}
+          className="taskbtn editBtn"
+          onClick={onEdit}
+        >
           <EditIcon />
         </button>
-        <button disabled={disabled} onClick={onDelete} className="dltBtn">
+        <button
+          disabled={disabled}
+          onClick={onDelete}
+          className="taskbtn dltBtn"
+        >
           <DeleteIcon />
         </button>
       </div>
