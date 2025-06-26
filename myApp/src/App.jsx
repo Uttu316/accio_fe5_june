@@ -1,13 +1,14 @@
 import Counter from "./components/counter";
-import TodoList from "./components/todoList";
-import CoursePage from "./pages/course";
+import "./App.css";
+import Practice from "./pages/practice";
+import Home from "./pages/home";
 
 const App = () => {
   return (
     <div>
       {/* <CoursePage /> */}
-      <Counter />
-      <TodoList />
+      {/* <Practice /> */}
+      <Home />
     </div>
   );
 };

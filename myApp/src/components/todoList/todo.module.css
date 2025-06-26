@@ -88,3 +88,7 @@
 .dltBtn:hover {
   background-color: rgba(255, 195, 195, 0.2);
 }
+
+.text {
+  color: pink;
+}

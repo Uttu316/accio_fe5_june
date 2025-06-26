@@ -1,6 +1,7 @@
 import { useState } from "react";
-import "./todo.css";
+import styles from "./todo.module.css";
 import TodoItem from "./todoItem";
+
 const TodoList = () => {
   const [tasks, setTasks] = useState([]); // list of task
 
@@ -55,16 +56,16 @@ const TodoList = () => {
   const isEditing = !!editTask; // boolean value if user is editing
 
   return (
-    <div className="todoList">
+    <div className={styles.todoList}>
       {!isEditing && (
-        <div className="todoInput">
+        <div className={styles.todoInput}>
           <input onChange={onInput} value={task} placeholder="Add your task" />
           <button onClick={onAdd}>Add</button>
         </div>
       )}
 
       {isEditing && (
-        <div className="todoInput">
+        <div className={styles.todoInput}>
           <input
             onChange={onInput}
             value={task}
@@ -74,7 +75,7 @@ const TodoList = () => {
         </div>
       )}
 
-      <ul className="taskList">
+      <ul className={styles.taskList}>
         {tasks.map((item, index) => (
           <TodoItem
             key={item.id} // a unique value to every item of array(list)

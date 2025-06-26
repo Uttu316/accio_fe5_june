@@ -1,12 +1,13 @@
+import styles from "./todo.module.css";
 import { MdEdit as EditIcon, MdDelete as DeleteIcon } from "react-icons/md";
 const TodoItem = ({ onDelete, disabled, task, onEdit }) => {
   return (
-    <li className="taskItem">
-      <span className="taskItemText">{task}</span>
-      <div className="taskActions">
+    <li className={styles.taskItem}>
+      <span className={`${styles.taskItemText} ${styles.text}`}>{task}</span>
+      <div className={styles.taskActions}>
         <button
           disabled={disabled}
-          className="taskbtn editBtn"
+          className={`${styles.taskbtn} ${styles.editBtn}`}
           onClick={onEdit}
         >
           <EditIcon />
@@ -14,7 +15,7 @@ const TodoItem = ({ onDelete, disabled, task, onEdit }) => {
         <button
           disabled={disabled}
           onClick={onDelete}
-          className="taskbtn dltBtn"
+          className={`${styles.taskbtn} ${styles.dltBtn}`}
         >
           <DeleteIcon />
         </button>
