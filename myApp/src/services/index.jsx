@@ -1,6 +1,6 @@
-export const api = async () => {
+export const api = async ({ endpoint }) => {
   try {
-    const URL = "https://fakestoreapi.com/products";
+    const URL = `https://fakestoreapi.com${endpoint}`;
 
     const res = await fetch(URL);
     if (res.status >= 200 && res.status < 300) {

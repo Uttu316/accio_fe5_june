@@ -72,13 +72,15 @@ const ProductList = ({ setCartItems, cartItems }) => {
   );
 
   useEffect(() => {
-    let h3 = document.querySelector("h3");
-    const reactH3 = filterRef.current;
-    console.log("isEqual", h3 === reactH3, h3, reactH3);
+    if (filterRef.current) {
+      let h3 = document.querySelector("h3");
+      const reactH3 = filterRef.current;
+      console.log("isEqual", h3 === reactH3, h3, reactH3);
 
-    filterRef.current.style.color = "brown";
-    filterRef.current.style.fontStyle = "italic";
-  }, [hasData]);
+      filterRef.current.style.color = "brown";
+      filterRef.current.style.fontStyle = "italic";
+    }
+  }, [hasData, filterRef.current]);
 
   return (
     <div className={styles.productWrapper}>

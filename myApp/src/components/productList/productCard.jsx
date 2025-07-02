@@ -1,8 +1,9 @@
 import { useCallback, useMemo } from "react";
 import styles from "./productCard.module.css";
+import { useNavigate } from "react-router";
 
 const ProductCard = ({ item, cartItems, setCartItems }) => {
-  console.log("Prodcut Card", item.id);
+  const navigate = useNavigate();
   const handleAddToCart = useCallback(() => {
     setCartItems((prevItems) => [...prevItems, item]);
   }, []);
@@ -15,8 +16,11 @@ const ProductCard = ({ item, cartItems, setCartItems }) => {
     [cartItems]
   );
 
+  const onCardClick = () => {
+    navigate(`/details/${item.id}`); //details/1
+  };
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={onCardClick}>
       <img src={item.image} alt={item.title} className={styles.image} />
       <p className={styles.title}>{item.title}</p>
       <p className={styles.price}>${item.price.toFixed(2)}</p>
