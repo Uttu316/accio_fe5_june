@@ -4,21 +4,20 @@ import ProductList from "../../components/productList";
 import { useState } from "react";
 import styles from "./home.module.css";
 import ProductHeader from "../../components/productHeader";
+import PageWrapper from "../../components/pageWrapper";
 
-const Home = ({ cartItems, setCartItems }) => {
+const Home = () => {
   console.log("Home");
 
   return (
-    <div>
-      <ProductHeader cartItems={cartItems} />
-
+    <PageWrapper>
       <section className={styles.section}>
         <h1 className={styles.title}>Welcome to AI World</h1>
 
-        <ProductList cartItems={cartItems} setCartItems={setCartItems} />
+        <ProductList />
       </section>
       <ChatWidget />
-    </div>
+    </PageWrapper>
   );
 };
 

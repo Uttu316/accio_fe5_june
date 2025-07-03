@@ -1,6 +1,9 @@
 import { Link, NavLink } from "react-router";
 import styles from "./header.module.css";
-const ProductHeader = ({ cartItems = [] }) => {
+import { useContext } from "react";
+import { CartContext } from "../../contexts/CartContext";
+const ProductHeader = () => {
+  const { cartItems } = useContext(CartContext);
   return (
     <header className={styles.header}>
       <h2>

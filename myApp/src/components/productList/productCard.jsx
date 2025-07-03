@@ -1,20 +1,21 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import styles from "./productCard.module.css";
 import { useNavigate } from "react-router";
+import { CartContext } from "../../contexts/CartContext";
 
-const ProductCard = ({ item, cartItems, setCartItems }) => {
+const ProductCard = ({ item }) => {
   const navigate = useNavigate();
-  const handleAddToCart = useCallback(() => {
-    setCartItems((prevItems) => [...prevItems, item]);
-  }, []);
-  const handleremovefromCart = useCallback(() => {
-    setCartItems((prevItems) => prevItems.filter((i) => i.id !== item.id));
-  }, []);
+  const { handleAddToCart, handleremovefromCart, isAlreadyInCart } =
+    useContext(CartContext);
 
-  const isAlreadyInCart = useMemo(
-    () => (cartItems || []).find((i) => i.id == item.id),
-    [cartItems]
-  );
+  const isInCart = isAlreadyInCart(item);
+
+  const onAdd = (e) => {
+    handleAddToCart(item);
+  };
+  const onRemove = (e) => {
+    handleremovefromCart(item);
+  };
 
   const onCardClick = () => {
     navigate(`/details/${item.id}`); //details/1
@@ -25,15 +26,15 @@ const ProductCard = ({ item, cartItems, setCartItems }) => {
       <p className={styles.title}>{item.title}</p>
       <p className={styles.price}>${item.price.toFixed(2)}</p>
       <p className={styles.description}>{item.description}</p>
-      {!isAlreadyInCart && (
-        <button className={styles.button} onClick={handleAddToCart}>
+      {!isInCart && (
+        <button className={styles.button} onClick={onAdd}>
           Add to Cart
         </button>
       )}
-      {isAlreadyInCart && (
+      {isInCart && (
         <button
           className={`${styles.button} ${styles.remove}`}
-          onClick={handleremovefromCart}
+          onClick={onRemove}
         >
           Remove from Cart
         </button>

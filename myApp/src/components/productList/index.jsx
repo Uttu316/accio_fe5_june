@@ -27,7 +27,7 @@ const FILTERS = [
   },
 ];
 
-const ProductList = ({ setCartItems, cartItems }) => {
+const ProductList = () => {
   console.log("Product List");
   const [apiStatus, setApiStatus] = useState("loading");
   const [data, setData] = useState([]);
@@ -104,12 +104,7 @@ const ProductList = ({ setCartItems, cartItems }) => {
           </div>
           <div className={styles.products}>
             {filteredProducts.map((item) => (
-              <ProductCard
-                key={item.id}
-                item={item}
-                setCartItems={setCartItems}
-                cartItems={cartItems}
-              />
+              <ProductCard key={item.id} item={item} />
             ))}
           </div>
         </div>

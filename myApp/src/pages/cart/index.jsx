@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./cart.module.css";
 import ProductHeader from "../../components/productHeader";
 import CartItem from "../../components/cartItem";
+import PageWrapper from "../../components/pageWrapper";
+import { CartContext } from "../../contexts/CartContext";
 
-const Cart = ({ cartItems, setCartItems }) => {
+const Cart = () => {
   // Example initial cart products
 
-  const handleRemove = (id) => {
-    setCartItems((prev) => prev.filter((product) => product.id !== id));
+  const { handleremovefromCart, cartItems, setCartItems } =
+    useContext(CartContext);
+
+  const handleRemove = (product) => {
+    handleremovefromCart(product);
   };
 
   const handlePlaceOrder = () => {
@@ -16,9 +21,7 @@ const Cart = ({ cartItems, setCartItems }) => {
   };
 
   return (
-    <div>
-      <ProductHeader cartItems={cartItems} />
-
+    <PageWrapper>
       <div className={styles.container}>
         <h2 className={styles.title}>Your Cart</h2>
         {cartItems.length === 0 ? (
@@ -38,7 +41,7 @@ const Cart = ({ cartItems, setCartItems }) => {
           </button>
         )}
       </div>
-    </div>
+    </PageWrapper>
   );
 };
 

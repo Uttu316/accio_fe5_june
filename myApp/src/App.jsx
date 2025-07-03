@@ -5,37 +5,27 @@ import About from "./pages/about";
 import Contact from "./pages/contact";
 import Cart from "./pages/cart";
 import Details from "./pages/details";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { Route } from "react-router";
 import CoursePage from "./pages/course";
 import NotFoundPage from "./pages/NotfoundPage";
-import { useState } from "react";
+
+import Router from "./router";
+import CartProvider from "./contexts/CartContext";
 
 const App = () => {
-  const [cartItems, setCartItems] = useState([]);
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={<Home setCartItems={setCartItems} cartItems={cartItems} />}
-        />
+    <CartProvider>
+      <Router>
+        <Route path="/" element={<Home />} />
         <Route path="/course" element={<CoursePage />} />
         <Route path="/practice" element={<Practice />} />
-        <Route path="/about" element={<About cartItems={cartItems} />} />
-        <Route path="/contact" element={<Contact cartItems={cartItems} />} />
-        <Route
-          path="/cart"
-          element={<Cart cartItems={cartItems} setCartItems={setCartItems} />}
-        />
-        <Route
-          path="/details/:productId"
-          element={
-            <Details cartItems={cartItems} setCartItems={setCartItems} />
-          }
-        />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/details/:productId" element={<Details />} />
         <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </BrowserRouter>
+      </Router>
+    </CartProvider>
   );
 };
 

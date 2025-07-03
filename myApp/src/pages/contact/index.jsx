@@ -2,12 +2,11 @@ import React from "react";
 import styles from "./contact.module.css";
 import contactImage from "../../assets/contact-image.svg";
 import ProductHeader from "../../components/productHeader";
+import PageWrapper from "../../components/pageWrapper";
 
-const Contact = ({ cartItems }) => {
+const Contact = () => {
   return (
-    <div>
-      <ProductHeader cartItems={cartItems} />
-
+    <PageWrapper>
       <div className={styles.container}>
         <h1>Contact Us</h1>
         <img src={contactImage} alt="Contact Us" className={styles.image} />
@@ -50,7 +49,7 @@ const Contact = ({ cartItems }) => {
           <button type="submit">Send Message</button>
         </form>
       </div>
-    </div>
+    </PageWrapper>
   );
 };
 

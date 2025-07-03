@@ -1,16 +1,23 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import styles from "./details.module.css";
-import ProductHeader from "../../components/productHeader";
 import { useParams } from "react-router";
 import { getProduct } from "../../services/getProduct";
+import PageWrapper from "../../components/pageWrapper";
+import { CartContext } from "../../contexts/CartContext";
 
-const Details = ({ cartItems, setCartItems }) => {
+const Details = ({ setCartItems }) => {
   const [product, setProduct] = useState(null);
   const [apiStatus, setAPIStatus] = useState("loading");
 
   const { productId } = useParams();
-
-  console.log({ productId });
+  const { handleAddToCart, handleremovefromCart, cartItems, isAlreadyInCart } =
+    useContext(CartContext);
 
   const fetchProduct = async () => {
     try {
@@ -35,23 +42,19 @@ const Details = ({ cartItems, setCartItems }) => {
   const hasProduct = isDone && product !== null;
   const noProduct = isDone && product === null;
 
-  const handleAddToCart = useCallback(() => {
-    setCartItems((prevItems) => [...prevItems, product]);
-  }, [product]);
-  const handleremovefromCart = useCallback(() => {
-    if (product) {
-      setCartItems((prevItems) => prevItems.filter((i) => i.id !== product.id));
-    }
-  }, [product]);
+  const onAdd = () => {
+    handleAddToCart(product);
+  };
+  const onRemove = () => {
+    handleremovefromCart(product);
+  };
 
-  const isAlreadyInCart = useMemo(
-    () => (product ? (cartItems || []).find((i) => i.id == product.id) : false),
-    [cartItems, product]
-  );
+  const isInCart = useMemo(() => {
+    return product ? isAlreadyInCart(product) : false;
+  }, [product, cartItems]);
+
   return (
-    <div>
-      <ProductHeader cartItems={cartItems} />
-
+    <PageWrapper>
       <div className={styles.container}>
         {noProduct && <h2>No Product Availble</h2>}
         {isLoading && <h2>Loading your product...</h2>}
@@ -75,15 +78,15 @@ const Details = ({ cartItems, setCartItems }) => {
               <p className={styles.rating}>
                 <strong>Rating:</strong> {product.rating.rate} / 5
               </p>
-              {!isAlreadyInCart && (
-                <button className={styles.cartBtn} onClick={handleAddToCart}>
+              {!isInCart && (
+                <button className={styles.cartBtn} onClick={onAdd}>
                   Add to Cart
                 </button>
               )}
-              {isAlreadyInCart && (
+              {isInCart && (
                 <button
                   className={`${styles.cartBtn} ${styles.remove}`}
-                  onClick={handleremovefromCart}
+                  onClick={onRemove}
                 >
                   Remove from Cart
                 </button>
@@ -92,7 +95,7 @@ const Details = ({ cartItems, setCartItems }) => {
           </div>
         )}
       </div>
-    </div>
+    </PageWrapper>
   );
 };
 

@@ -1,12 +1,11 @@
 import React from "react";
 import styles from "./about.module.css";
 import aboutImage from "../../assets/about-image.svg";
-import ProductHeader from "../../components/productHeader";
+import PageWrapper from "../../components/pageWrapper";
 
-const About = ({ cartItems }) => {
+const About = () => {
   return (
-    <div>
-      <ProductHeader cartItems={cartItems} />
+    <PageWrapper>
       <div className={styles.container}>
         <h1>About Us</h1>
         <img src={aboutImage} alt="About Us" className={styles.image} />
@@ -21,7 +20,7 @@ const About = ({ cartItems }) => {
           through cutting-edge technology and exceptional customer support.
         </p>
       </div>
-    </div>
+    </PageWrapper>
   );
 };
 
